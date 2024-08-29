@@ -29,4 +29,4 @@ Debug Build:
 `dotnet build vid2contactsheet.sln -c Debug /p:Version=1.0.0 /p:Authors="McKenzie Software & Contributors" /p:Copyright="McKenzie Software (c) 2024"`
 
 Release Build:
-`dotnet build vid2contactsheet.sln -c Debug /p:Version=1.0.0 /p:Authors="McKenzie Software & Contributors" /p:Copyright="McKenzie Software (c) 2024"`
+`dotnet build vid2contactsheet.sln -c Release /p:Version=1.0.0 /p:Authors="McKenzie Software & Contributors" /p:Copyright="McKenzie Software (c) 2024"`
