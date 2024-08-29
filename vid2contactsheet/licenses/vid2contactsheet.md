@@ -1,0 +1,1 @@
+https://github.com/McKenzie-Software/vid2contactsheet/blob/main/LICENSE
