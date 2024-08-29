@@ -1,3 +1,7 @@
+<p align="center">
+<img width="200px" src="https://github.com/user-attachments/assets/1fbeb914-50ff-4cc5-80bb-62b3ff24a94a" alt="vid2contactsheet"></img>
+</p>
+
 # vid2contactsheet
 Generate Contact Sheets and more in a friendly GUI using ffmpeg, ffprobe and ImageMagick
 
@@ -13,7 +17,7 @@ Video file used [Steamboat Willie (1928) by Walt Disney](https://commons.wikimed
 # Usage
 Open `vid2contactsheet.exe` 
 
-You will be asked if you want to download the required executables or do it [manually]()
+You will be asked if you want to download the required executables or do it [manually](https://github.com/McKenzie-Software/vid2contactsheet/wiki/Manual-Download)
 
 Select your video file and click start.  You can modify frame count and contact sheet resolution on the Configuration tab.
 
