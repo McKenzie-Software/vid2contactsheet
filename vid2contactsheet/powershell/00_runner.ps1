@@ -24,7 +24,10 @@
     [string]$imageMagickPath,
 
     [Parameter(Mandatory=$false)]
-    [string]$contactSheetResolution
+    [string]$contactSheetResolution,
+
+    [Parameter(Mandatory=$false)]
+    [int]$contactSheetCompressMultiplyer
 )
 
 # Validate Paths
@@ -81,7 +84,7 @@ Start-Sleep -Seconds 2
 # Generate contact sheet
 Write-Host "Generating contact sheet..."
 try {
-    & ".\powershell\03_generate_contact_sheet.ps1" -metadataFilePath $metadataFilePath -annotatedFrameDirectory $annotatedFrameDirectory -outputDirectory $outputDirectory -imagemagickPath $imageMagickPath -resolution $contactSheetResolution
+    & ".\powershell\03_generate_contact_sheet.ps1" -metadataFilePath $metadataFilePath -annotatedFrameDirectory $annotatedFrameDirectory -outputDirectory $outputDirectory -imagemagickPath $imageMagickPath -resolution $contactSheetResolution -resolutionCompressMultiplyer $contactSheetCompressMultiplyer
 } catch {
     Write-Host "Error during contact sheet generation: $_" -ForegroundColor Red
     exit 1

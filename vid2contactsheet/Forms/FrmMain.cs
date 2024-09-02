@@ -106,6 +106,7 @@ namespace vid2contactsheet
 
         private async void BtnGenerateContactSheet_Click(object sender, EventArgs e)
         {
+            PbContactSheet.Image = null;
 
             ActionRunning(true);
             DeleteFilesFromDirectories();
@@ -129,17 +130,18 @@ namespace vid2contactsheet
                     {"imageMagickPath", LblConfigureMagickExecutableValue.Text }
                 };
 
-                if (CbCompressContactSheet.Checked)
+                // Only add our resolution parameter if Compress Contact Sheet is checked, but Multipler Cb is not checked
+                if (CbConfigurationCompressContactSheet.Checked && CbConfigurationCompressContactSheetMultiplyer.Checked == false)
                 {
                     psParameters.Add("contactSheetResolution", TxtCompressContactSheetResolution.Text);
                 }
 
-                //string test = $"{runnerScript} -ffmpegPath \"{LblConfigureFfmpegExecutableValue.Text}\" -ffprobePath \"{LblConfigureFfprobeExecutableValue.Text}\" -videoFilePath \"{TxtFilePath.Text}\" -outputDirectory \"{_creator.OUTPUT_DIRECTORY}\" -frameDirectory \"{_creator.FRAME_DIRECTORY}\" -annotatedFrameDirectory \"{_creator.ANNOTATED_FRAME_DIRECTORY}\" -frameCount {numericFrameCount.Value} -imageMagickPath \"{LblConfigureMagickExecutableValue.Text}\" -resolution \"{TxtCompressContactSheetResolution.Text}\"";
-                //Clipboard.SetText(test);
+                if(CbConfigurationCompressContactSheetMultiplyer.Checked)
+                {
+                    psParameters.Add("contactSheetCompressMultiplyer", NumConfigurationCompressContactSheet.Value);
+                }
 
                 string result = await psPipe.RunPowerShellScript(runnerScript, psParameters);
-
-                //MessageBox.Show("Contact Sheet generated, full details available in logs.", Text, MessageBoxButtons.OK);
 
                 UpdateContactSheetPictureBox();
 
@@ -167,6 +169,8 @@ namespace vid2contactsheet
 
         private async void BtnGenerateGif_Click(object sender, EventArgs e)
         {
+            PbContactSheet.Image = null;
+
             ActionRunning(true);
 
             if (File.Exists(Path.Combine(_creator.OUTPUT_DIRECTORY, "generated_preview.gif")))
@@ -360,15 +364,35 @@ namespace vid2contactsheet
 
         private void CbCompressContactSheet_CheckedChanged(object sender, EventArgs e)
         {
-            if (CbCompressContactSheet.Checked)
+            if (CbConfigurationCompressContactSheet.Checked)
             {
                 TxtCompressContactSheetResolution.Enabled = true;
                 TxtCompressContactSheetResolution.Text = "1280x720";
+                CbConfigurationCompressContactSheetMultiplyer.Enabled = true;
                 return;
             }
 
+            NumConfigurationCompressContactSheet.Enabled = false;
+            CbConfigurationCompressContactSheetMultiplyer.Checked = false;
             TxtCompressContactSheetResolution.Enabled = false;
             TxtCompressContactSheetResolution.Text = string.Empty;
+            CbConfigurationCompressContactSheetMultiplyer.Enabled = false;
+        }
+
+        private void CbConfigurationCompressContactSheet_CheckedChanged(object sender, EventArgs e)
+        {
+            if(CbConfigurationCompressContactSheetMultiplyer.Checked)
+            {
+                NumConfigurationCompressContactSheet.Enabled = true;
+                TxtCompressContactSheetResolution.Enabled = false;
+                TxtCompressContactSheetResolution.Text = string.Empty;
+                return;
+            }
+
+            NumConfigurationCompressContactSheet.Enabled = false;
+            TxtCompressContactSheetResolution.Enabled = true;
+            TxtCompressContactSheetResolution.Text = "1280x720";
+
         }
 
         private void TxtCompressContactSheetResolution_Leave(object sender, EventArgs e)
@@ -396,5 +420,7 @@ namespace vid2contactsheet
         {
             MessageBox.Show($"{AssemblyAttributes.AssemblyCopyright}\r\n{Application.ProductVersion}\r\nhttps://github.com/mckenzie-software/vid2contactsheet", $"About {Text}", MessageBoxButtons.OK);
         }
+
+
     }
 }

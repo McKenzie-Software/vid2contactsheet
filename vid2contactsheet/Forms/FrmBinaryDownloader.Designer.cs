@@ -41,13 +41,13 @@
             LblNotice.BorderStyle = BorderStyle.FixedSingle;
             LblNotice.Location = new Point(20, 20);
             LblNotice.Name = "LblNotice";
-            LblNotice.Size = new Size(768, 269);
+            LblNotice.Size = new Size(768, 294);
             LblNotice.TabIndex = 0;
             LblNotice.Text = resources.GetString("LblNotice.Text");
             // 
             // BtnDownload
             // 
-            BtnDownload.Location = new Point(20, 303);
+            BtnDownload.Location = new Point(20, 317);
             BtnDownload.Name = "BtnDownload";
             BtnDownload.Size = new Size(300, 29);
             BtnDownload.TabIndex = 1;
@@ -57,7 +57,7 @@
             // 
             // BtnManual
             // 
-            BtnManual.Location = new Point(488, 303);
+            BtnManual.Location = new Point(488, 317);
             BtnManual.Name = "BtnManual";
             BtnManual.Size = new Size(300, 29);
             BtnManual.TabIndex = 2;
@@ -85,7 +85,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(800, 350);
+            ClientSize = new Size(800, 358);
             Controls.Add(LblDownloadNotice);
             Controls.Add(progressBarDownload);
             Controls.Add(BtnManual);

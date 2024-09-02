@@ -48,11 +48,11 @@ namespace vid2contactsheet.Forms
             ResetProgressBar();
 
             UpdateDownloadNotice($"Downloading ImageMagick");
-            await downloader.DownloadPackage("https://imagemagick.org/archive/binaries/ImageMagick-7.1.1-37-portable-Q16-x64.zip", "imagemagick", progress).ConfigureAwait(false);
+            await downloader.DownloadPackage("https://mckenziesoftware.scot/downloads/ImageMagick-7.1.1-38-portable-Q8-x64.zip", "imagemagick", progress).ConfigureAwait(false);
             // don't reset the last one since we're finished
 
             // rename the imagemagick directory
-            Directory.Move(@"bin/ImageMagick-7.1.1-37-portable-Q16-x64", "bin/imagemagick");
+            Directory.Move(@"bin/ImageMagick-7.1.1-38-portable-Q8-x64", "bin/imagemagick");
 
             // Close form and open main form
             this.Invoke(new Action(() => this.Close()));

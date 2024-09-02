@@ -12,7 +12,10 @@
     [string]$imagemagickPath,
 
     [Parameter(Mandatory=$false)]
-    [string]$resolution
+    [string]$resolution,
+
+    [Parameter(Mandatory=$false)]
+    [int]$resolutionCompressMultiplyer
 )
 
 # Load the .NET assembly for image handling
@@ -59,8 +62,26 @@ $finalSheetPath = "$outputDirectory\final_contact_sheet.png"
 & "$imagemagickPath" $newImagePath $blackBoxPath -geometry +0+0 -composite $contactSheetPath -geometry +0+$blackBoxHeight -colorspace sRGB -composite $finalSheetPath 
 
 # Compress and overwrite the final contact sheet if resolution is specified
-if (-not [string]::IsNullOrEmpty($resolution)) {
+## This compression is if the user has specified a resolution directlry!
+if (-not [string]::IsNullOrEmpty($resolution)) 
+{
     & "$imagemagickPath" $finalSheetPath -resize $resolution -quality 85 $finalSheetPath
+}
+
+#Compress and overwrite the final contact sheet if compression multiplyer is specified
+## This compression is if the user has specified a compression multiplyer!
+if ($resolutionCompressMultiplyer -and $resolutionCompressMultiplyer -gt 0)
+{
+    $finalSheetFromSystem = [System.Drawing.Image]::FromFile($finalSheetPath)
+    $finalSheetWidth = $finalSheetFromSystem.Width
+    $finalSheetHeight = $finalSheetFromSystem.height
+    $finalSheetFromSystem.Dispose()
+
+    # Calculate new dimensions
+    $newHeight = [int]($finalSheetHeight / $resolutionCompressMultiplyer)
+    $newWidth = [int]($finalSheetWidth / $resolutionCompressMultiplyer)
+
+    & "$imagemagickPath" $finalSheetPath -resize ${newWidth}x$newHeight  -quality 85 $finalSheetPath
 }
 
 # Remove left overs

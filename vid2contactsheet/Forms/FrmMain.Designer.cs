@@ -33,9 +33,11 @@
             BtnFilePath = new Button();
             tabCtrl = new TabControl();
             tabConfiguration = new TabPage();
+            NumConfigurationCompressContactSheet = new NumericUpDown();
+            CbConfigurationCompressContactSheetMultiplyer = new CheckBox();
             LblCompressContactSheetResolution = new Label();
             TxtCompressContactSheetResolution = new TextBox();
-            CbCompressContactSheet = new CheckBox();
+            CbConfigurationCompressContactSheet = new CheckBox();
             LblCompressContactSheet = new Label();
             BtnStart = new Button();
             LblConfigureFrameCountNotice = new Label();
@@ -73,6 +75,7 @@
             BtnAbout = new Button();
             tabCtrl.SuspendLayout();
             tabConfiguration.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)NumConfigurationCompressContactSheet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericFrameCount).BeginInit();
             tabPreview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PbVideoPreview).BeginInit();
@@ -116,9 +119,11 @@
             // tabConfiguration
             // 
             tabConfiguration.BackColor = Color.White;
+            tabConfiguration.Controls.Add(NumConfigurationCompressContactSheet);
+            tabConfiguration.Controls.Add(CbConfigurationCompressContactSheetMultiplyer);
             tabConfiguration.Controls.Add(LblCompressContactSheetResolution);
             tabConfiguration.Controls.Add(TxtCompressContactSheetResolution);
-            tabConfiguration.Controls.Add(CbCompressContactSheet);
+            tabConfiguration.Controls.Add(CbConfigurationCompressContactSheet);
             tabConfiguration.Controls.Add(LblCompressContactSheet);
             tabConfiguration.Controls.Add(BtnStart);
             tabConfiguration.Controls.Add(LblConfigureFrameCountNotice);
@@ -146,6 +151,29 @@
             tabConfiguration.TabIndex = 1;
             tabConfiguration.Text = "Configuration";
             // 
+            // NumConfigurationCompressContactSheet
+            // 
+            NumConfigurationCompressContactSheet.Enabled = false;
+            NumConfigurationCompressContactSheet.Location = new Point(518, 398);
+            NumConfigurationCompressContactSheet.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
+            NumConfigurationCompressContactSheet.Minimum = new decimal(new int[] { 2, 0, 0, 0 });
+            NumConfigurationCompressContactSheet.Name = "NumConfigurationCompressContactSheet";
+            NumConfigurationCompressContactSheet.Size = new Size(150, 27);
+            NumConfigurationCompressContactSheet.TabIndex = 22;
+            NumConfigurationCompressContactSheet.Value = new decimal(new int[] { 2, 0, 0, 0 });
+            // 
+            // CbConfigurationCompressContactSheetMultiplyer
+            // 
+            CbConfigurationCompressContactSheetMultiplyer.AutoSize = true;
+            CbConfigurationCompressContactSheetMultiplyer.Enabled = false;
+            CbConfigurationCompressContactSheetMultiplyer.Location = new Point(297, 399);
+            CbConfigurationCompressContactSheetMultiplyer.Name = "CbConfigurationCompressContactSheetMultiplyer";
+            CbConfigurationCompressContactSheetMultiplyer.Size = new Size(215, 24);
+            CbConfigurationCompressContactSheetMultiplyer.TabIndex = 21;
+            CbConfigurationCompressContactSheetMultiplyer.Text = "Compress Contact Sheet by:\r\n";
+            CbConfigurationCompressContactSheetMultiplyer.UseVisualStyleBackColor = true;
+            CbConfigurationCompressContactSheetMultiplyer.CheckedChanged += CbConfigurationCompressContactSheet_CheckedChanged;
+            // 
             // LblCompressContactSheetResolution
             // 
             LblCompressContactSheetResolution.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -165,16 +193,16 @@
             TxtCompressContactSheetResolution.TabIndex = 19;
             TxtCompressContactSheetResolution.Leave += TxtCompressContactSheetResolution_Leave;
             // 
-            // CbCompressContactSheet
+            // CbConfigurationCompressContactSheet
             // 
-            CbCompressContactSheet.AutoSize = true;
-            CbCompressContactSheet.Location = new Point(239, 360);
-            CbCompressContactSheet.Name = "CbCompressContactSheet";
-            CbCompressContactSheet.Size = new Size(52, 24);
-            CbCompressContactSheet.TabIndex = 18;
-            CbCompressContactSheet.Text = "Yes";
-            CbCompressContactSheet.UseVisualStyleBackColor = true;
-            CbCompressContactSheet.CheckedChanged += CbCompressContactSheet_CheckedChanged;
+            CbConfigurationCompressContactSheet.AutoSize = true;
+            CbConfigurationCompressContactSheet.Location = new Point(239, 360);
+            CbConfigurationCompressContactSheet.Name = "CbConfigurationCompressContactSheet";
+            CbConfigurationCompressContactSheet.Size = new Size(52, 24);
+            CbConfigurationCompressContactSheet.TabIndex = 18;
+            CbConfigurationCompressContactSheet.Text = "Yes";
+            CbConfigurationCompressContactSheet.UseVisualStyleBackColor = true;
+            CbConfigurationCompressContactSheet.CheckedChanged += CbCompressContactSheet_CheckedChanged;
             // 
             // LblCompressContactSheet
             // 
@@ -200,9 +228,11 @@
             // LblConfigureFrameCountNotice
             // 
             LblConfigureFrameCountNotice.AutoSize = true;
+            LblConfigureFrameCountNotice.BorderStyle = BorderStyle.FixedSingle;
+            LblConfigureFrameCountNotice.ForeColor = Color.Red;
             LblConfigureFrameCountNotice.Location = new Point(498, 315);
             LblConfigureFrameCountNotice.Name = "LblConfigureFrameCountNotice";
-            LblConfigureFrameCountNotice.Size = new Size(332, 20);
+            LblConfigureFrameCountNotice.Size = new Size(334, 22);
             LblConfigureFrameCountNotice.TabIndex = 16;
             LblConfigureFrameCountNotice.Text = "The generated contact sheet is 4 frames in width.";
             // 
@@ -559,6 +589,7 @@
             tabCtrl.ResumeLayout(false);
             tabConfiguration.ResumeLayout(false);
             tabConfiguration.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)NumConfigurationCompressContactSheet).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericFrameCount).EndInit();
             tabPreview.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)PbVideoPreview).EndInit();
@@ -608,9 +639,12 @@
         private PictureBox PbGifPreview;
         private Button BtnLicenses;
         private Button BtnAbout;
-        private CheckBox CbCompressContactSheet;
+        private CheckBox CbConfigurationCompressContactSheet;
         private Label LblCompressContactSheet;
         private Label LblCompressContactSheetResolution;
         private TextBox TxtCompressContactSheetResolution;
+        private CheckBox CbConfigurationCompressContactSheetx3;
+        private CheckBox CbConfigurationCompressContactSheetMultiplyer;
+        private NumericUpDown NumConfigurationCompressContactSheet;
     }
 }
